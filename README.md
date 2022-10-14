@@ -15,7 +15,7 @@ Collect data from your inverter status page and push them to mqtt
 
 Create a new config file by copying the [sample config file](config.sample.json) and filling in the required information.
 
-The first part covers your SolarmanPV account:
+The first part covers your inverter admin page:
 
 ```lang=json
 {
@@ -30,7 +30,7 @@ The first part covers your SolarmanPV account:
 * **username**: is the username for the admin page of the inverter.
 * **password**: is the password for the admin page, default is also admin
 
-  
+
 The second section covers the MQTT broker, to where the metrics will be published.
 
 ```lang=json
@@ -38,13 +38,13 @@ The second section covers the MQTT broker, to where the metrics will be publishe
   [..]
   "broker": "mqtt.example.com",
   "port": 1883,
-  "topic": "solarmanpv/status_pag",
+  "topic": "solarmanpv/status_page",
   "username": "",
   "password": ""
 }
 ```
 
-## MQTT topics
+## MQTT attributes
 
 The following attributes are published to the MQTT broker. The example output below use `solarmanpv/status_pages` as the topic, configured in the config file.
 
