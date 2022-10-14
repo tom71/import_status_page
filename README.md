@@ -1,28 +1,15 @@
-# solarman-mqtt
+# import-status-pages
+ 
+This script is forked from: https://github.com/mpepping/solarman-mqtt
 
-Script to retrieve current Solar PV data from the Solarman API, and send Power (W) and Energy (kWh) metrics to a MQTT broker, for further use in home automation. Several PV vendors use the Solarman Smart platform for statistics. One example is the Trannergy PV converter.
+This script collect the current data from the status page of your solar panel inverter
 
 ```lang=bash
-usage: run.py [-h] [-d] [-s] [-i INTERVAL] [-f FILE] [--validate] [--create-passhash CREATE_PASSHASH] [-v]
+usage: import_request.py
 
 Collect data from Trannergy / Solarman API
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d, --daemon          run as a service
-  -s, --single          single run and exit
-  -i INTERVAL, --interval INTERVAL
-                        run interval in seconds (default 300 sec.)
-  -f FILE, --file FILE  config file (default ./config.json)
-  --validate            validate config file and exit
-  --create-passhash CREATE_PASSHASH
-                        create passhash from provided passwordand exit
-  -v, --version         show program's version number and exit
 ```
-
-## Usage
-
-You can run this script as a Docker container or in Python 3. Either way, a configuration file is required. Use the sample [config.sample.json](config.sample.json) file in this repository for reference. Also, a Solarman API appid+secret is required, which can be requested via [service@solarmanpv.com](mailto:service@solarmanpv.com?subject=SolarmanPV%20API%20key%20Request).
 
 ## How to get all required input for the config file
 
@@ -32,36 +19,32 @@ The first part covers your SolarmanPV account:
 
 ```lang=json
 {
-  "name": "Trannergy",
-  "url": "api.solarmanpv.com",
-  "appid": "",
-  "secret": "",
+  "url": "http://10.10.10.255",
   "username": "",
-  "passhash": "",
+  "password": "",
   [..]
 }
 ```
 
-* **name**: is free text to identify the platform.
-* **url**: is the base URL of the API.
-* **appid**: is the appid for the API (See Usage).
-* **secret**: is the secret for the API (See Usage).
-* **username**: is the username for the API (emailadres).
-* **passhash**: is a sha256 hash of your password. This can be generated via `--create-passhash`.
+* **url**: is the base URL of your local inverter page.
+* **username**: is the username for the admin page of the inverter.
+* **password**: is the password for the admin page, default is also admin
 
-The second part covers the PV inverter and logger ID's. These can be retrieved via the Solarman API.
+The second part covers the mqtt broker.
 
 ```lang=json
 {
   [..]
-  "stationId": 123,
-  "inverterId": 456,
-  "loggerId": 789
+  "broker": 1.1.1.1,
+  "port": 1883,
+  "topic": "solarman",
+  "username": '',
+  "password": ''
   [..]
 }
 ```
 
-* **stationId**: is the ID of the station. This is the value of `stationList[0].id`.
+* **topic**: is the ID of the station. This is the value of `stationList[0].id`.
 
 ```lang=bash
 curl --location --request POST 'https://api.solarmanpv.com//station/v1.0/list?language=en' \
