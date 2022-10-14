@@ -6,7 +6,7 @@
   "mqtt":{
     "broker": "1.1.1.1",
     "port": 1883,
-    "topic": "solarmanpv",
+    "topic": "solarmanpv/status_page",
     "username": "",
     "password": ""
   }
