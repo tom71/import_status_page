@@ -1,8 +1,8 @@
-# import-status-pages
+# import-status-page
  
-This script is forked from: https://github.com/mpepping/solarman-mqtt
+This script is inspired by: https://github.com/mpepping/solarman-mqtt
 
-This script collect the current data from the status page of your solar panel inverter
+The script collects the current data from the status page of your solar panel inverter
 
 ```lang=bash
 usage: import_request.py
@@ -52,8 +52,13 @@ The following attributes are published to the MQTT broker. The example output be
 "webdata_now_p"
 "webdata_today_e"
 "webdata_total_e"
-
 ```
+
+### example data
+
+```lang=json
+{"webdata_now_p": 93, "webdata_today_e": 1.3, "webdata_total_e": 2.6}
+````
 
 ### Using Python
 
