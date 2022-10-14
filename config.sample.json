@@ -1,0 +1,14 @@
+{
+  "url": "http://10.10.1.255",
+  "username": "admin",
+  "password": "admin",
+  "debug" : false,
+  "mqtt":{
+    "broker": "1.1.1.1",
+    "port": 1883,
+    "topic": "solarmanpv",
+    "username": "",
+    "password": ""
+  }
+}
+
