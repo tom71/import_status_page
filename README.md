@@ -30,20 +30,7 @@ The first part covers your SolarmanPV account:
 * **username**: is the username for the admin page of the inverter.
 * **password**: is the password for the admin page, default is also admin
 
-The second part covers the mqtt broker.
-
-```lang=json
-{
-  [..]
-  "broker": 1.1.1.1,
-  "port": 1883,
-  "topic": "solarman",
-  "username": '',
-  "password": ''
-  [..]
-}
-```
-
+  
 The second section covers the MQTT broker, to where the metrics will be published.
 
 ```lang=json
